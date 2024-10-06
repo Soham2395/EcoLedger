@@ -2,26 +2,133 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+    --radius: 0.5rem;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-gradient-background text-foreground min-h-screen;
+  }
+}
+
+@layer components {
+  /* Aceternity UI specific styles */
+  .wavy-background {
+    @apply relative overflow-hidden;
+  }
+
+  .text-generate-effect {
+    @apply transition-all duration-500;
+  }
+
+  .three-d-card {
+    @apply perspective-1000 transform-style-3d transition-transform duration-300;
+  }
+
+  .background-gradient {
+    @apply bg-gradient-to-r from-purple-400 via-pink-500 to-red-500;
+  }
+
+  .sparkles {
+    @apply pointer-events-none absolute inset-0;
+  }
+
+  .hover-effect-card {
+    @apply transition-all duration-300 hover:scale-105;
+  }
+
+  .globe-container {
+    @apply w-full h-[400px] relative;
+  }
+
+  .sticky-scroll-container {
+    @apply sticky top-0;
+  }
+
+  .animated-tooltip {
+    @apply transition-all duration-300;
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600;
+  }
+
+  .glassmorphism {
+    @apply bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg;
+  }
+
+  .bg-gradient-background {
+    @apply bg-gradient-to-b from-blue-900 to-black;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded-sm;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
+
+/* Smooth transitions for dark mode */
+.transition-colors,
+.transition-bg {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Responsive font sizes */
+@screen sm {
+  html {
+    font-size: 14px;
+  }
+}
+
+@screen md {
+  html {
+    font-size: 16px;
+  }
+}
+
+@screen lg {
+  html {
+    font-size: 18px;
   }
 }
