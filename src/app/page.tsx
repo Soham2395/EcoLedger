@@ -12,6 +12,7 @@ import { Button } from "../components/ui/button"
 import { motion } from "framer-motion"
 import { SparklesCore } from "../components/ui/sparkles"
 import { BackgroundGradient } from "../components/ui/background-gradient"
+import { TypeAnimation } from 'react-type-animation'
 
 const HeroSection = () => {
   return (
@@ -41,16 +42,29 @@ const HeroSection = () => {
               EcoLedger
             </span>
           </h1>
-          <p className="text-2xl text-gray-300 mb-8">
-            Revolutionizing Renewable Energy with Blockchain
-          </p>
+          <div className="h-20 md:h-16"> 
+            <TypeAnimation
+              sequence={[
+                'Revolutionizing Renewable Energy with Blockchain',
+                2000,
+                'Empowering Green Energy Through Technology',
+                2000,
+                'Transforming the Future of Energy Certificates',
+                2000,
+              ]}
+              wrapper="p"
+              speed={50}
+              repeat={Infinity}
+              className="text-xl md:text-2xl text-gray-300"
+            />
+          </div>
         </motion.div>
         
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex flex-col md:flex-row gap-4 mb-8"
+          className="flex flex-col md:flex-row gap-4 mb-8 mt-8"
         >
           <div className="bg-opacity-20 backdrop-filter backdrop-blur-lg bg-gradient-to-r from-dark-blue via-black to-black rounded-lg p-6 text-center">
             <h3 className="text-2xl font-bold text-green-400 mb-2">100+</h3>
