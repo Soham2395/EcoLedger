@@ -12,31 +12,27 @@ import { Button } from "../components/ui/button"
 import { motion } from "framer-motion"
 import { SparklesCore } from "../components/ui/sparkles"
 import { BackgroundGradient } from "../components/ui/background-gradient"
-import { TypeAnimation } from 'react-type-animation'
 
 const HeroSection = () => {
   return (
     <div className="h-screen w-full bg-gradient-to-r from-dark-blue via-black to-black flex flex-col items-center justify-center overflow-hidden rounded-md">
       <BackgroundGradient className="absolute inset-0 opacity-20" />
-      <div className="w-full absolute inset-0 h-screen">
-        <SparklesCore
-          id="tsparticlesfullpage"
-          background="transparent"
-          minSize={0.6}
-          maxSize={1.4}
-          particleDensity={20}
-          className="w-full h-full"
-          particleColor="#FFFFFF"
-        />
-      </div>
-      
       <div className="relative z-10 flex flex-col items-center justify-center px-4">
+      <ParticlesComponent/>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="text-center"
         >
+          
+          <Image 
+            src="/image/logo.png" 
+            alt="EcoLedger" 
+            width={200} 
+            height={200}
+            className="mx-auto"
+            />
           <h1 className="text-6xl md:text-7xl font-bold mb-4 text-white">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
               EcoLedger
@@ -66,7 +62,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="flex flex-col md:flex-row gap-4 mb-8 mt-8"
         >
-          <div className="bg-opacity-20 backdrop-filter backdrop-blur-lg bg-gradient-to-r from-dark-blue via-black to-black rounded-lg p-6 text-center">
+          <div className=" backdrop-filter backdrop-blur-lg bg-gradient-to-r from-dark-blue via-black to-black rounded-lg p-6 text-center">
             <h3 className="text-2xl font-bold text-green-400 mb-2">100+</h3>
             <p className="text-sm text-gray-300">Energy Providers</p>
           </div>
