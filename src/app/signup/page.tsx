@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Zap, Mail, Lock, User, ArrowRight, Brain, Heart } from "lucide-react"
+import { Zap, Mail, Lock, User, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -12,6 +12,7 @@ import ParticlesComponent from "@/components/ui/particles"
 
 export default function AuthPage() {
   const [activeTab, setActiveTab] = useState("signin")
+  const [userType, setUserType] = useState("General User") // State for user type
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -36,18 +37,19 @@ export default function AuthPage() {
     const email = formData.get('email')
     const password = formData.get('password')
     const confirmPassword = formData.get('confirm-password')
+    const companyName = formData.get('company-name') // Get company name
 
     if (password !== confirmPassword) {
       console.error("Passwords do not match.")
       return
     }
 
-    console.log("Sign Up:", { name, email, password })
+    console.log("Sign Up:", { name, email, password, userType, companyName }) // Include user type and company name
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-dark-blue via-black to-black flex items-center justify-center p-4 relative overflow-hidden">
-    <ParticlesComponent />
+      <ParticlesComponent />
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -116,6 +118,29 @@ export default function AuthPage() {
                           <Input id="email" name="email" placeholder="m@example.com" type="email" className="pl-10" required />
                         </div>
                       </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="user-type">User Type</Label>
+                        <select
+                          id="user-type"
+                          name="user-type"
+                          value={userType}
+                          onChange={(e) => setUserType(e.target.value)}
+                          className="block w-full border border-gray-300 text-black rounded-md p-2"
+                          required
+                        >
+                          <option value="General User">General User</option>
+                          <option value="Energy Provider">Energy Provider</option>
+                          <option value="Capital Owner">Capital Owner</option>
+                        </select>
+                      </div>
+                      {userType === "Capital Owner" && (
+                        <div className="space-y-2">
+                          <Label htmlFor="company-name">Company Name</Label>
+                          <div className="relative">
+                            <Input id="company-name" name="company-name" placeholder="Your Company" className="pl-10" required />
+                          </div>
+                        </div>
+                      )}
                       <div className="space-y-2">
                         <Label htmlFor="password">Password</Label>
                         <div className="relative">
