@@ -27,24 +27,51 @@ export default function AuthPage() {
     const email = formData.get('email')
     const password = formData.get('password')
 
-    console.log("Sign In:", { email, password })
+    fetch('http://localhost:5000/api/user/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   }
 
   const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.target as HTMLFormElement)
-    const name = formData.get('name')
+  
+    const username = formData.get('name')
     const email = formData.get('email')
     const password = formData.get('password')
     const confirmPassword = formData.get('confirm-password')
-    const companyName = formData.get('company-name') // Get company name
+    const companyName = formData.get('company-name')
+    const usertype = formData.get('user-type')
+    
+    fetch('http://localhost:5000/api/user/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, email, password, usertype, companyName }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 
-    if (password !== confirmPassword) {
-      console.error("Passwords do not match.")
-      return
-    }
 
-    console.log("Sign Up:", { name, email, password, userType, companyName }) // Include user type and company name
+    console.log("Sign Up:", { name, email, password, userType, companyName,usertype }) // Include user type and company name
   }
 
   return (
