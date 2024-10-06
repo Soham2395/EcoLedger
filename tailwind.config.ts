@@ -21,6 +21,7 @@ const config = {
       colors: {
         border: "hsl(var(--border))",
         'dark-blue': '#0a0e2e',
+        'home-gradient': 'linear-gradient(180deg, #0a0e2e, 0%, #0a0e2e, 100%)',
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
