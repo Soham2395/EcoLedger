@@ -3,14 +3,18 @@
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim"; // slim version to minimize the bundle size
 import { useCallback } from "react";
+import { Engine, Container } from "tsparticles-engine";
 
 const ParticlesComponent = () => {
-  const particlesInit = useCallback(async (engine) => {
+  const particlesInit = useCallback(async (engine: Engine) => {
     // this is where you can add custom shapes or interact with the particles.js engine
     await loadSlim(engine);
   }, []);
 
-  const particlesLoaded = useCallback(async (container: Container) => {
+  const particlesLoaded = useCallback(async (container?: Container) => {
+    if (!container) {
+      return;
+    }
     console.log(container);
   }, []);
 
@@ -54,10 +58,10 @@ const ParticlesComponent = () => {
         width: 1,
       },
       move: {
-        direction: "none",
+        direction: "none" as const,
         enable: true,
         outModes: {
-          default: "bounce",
+          default: "bounce" as const,
         },
         random: true,
         speed: 1,

@@ -12,27 +12,29 @@ import { Button } from "../components/ui/button"
 import { motion } from "framer-motion"
 import { SparklesCore } from "../components/ui/sparkles"
 import { BackgroundGradient } from "../components/ui/background-gradient"
+import ParticlesComponent from "../components/ui/particles"
+import Image from 'next/image'
+import { TypeAnimation } from 'react-type-animation'
 
 const HeroSection = () => {
   return (
-    <div className="h-screen w-full bg-gradient-to-r from-dark-blue via-black to-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+    <div className="relative h-screen w-full bg-gradient-to-r from-dark-blue via-black to-black flex flex-col items-center justify-center overflow-hidden rounded-md">
       <BackgroundGradient className="absolute inset-0 opacity-20" />
+      <ParticlesComponent />
       <div className="relative z-10 flex flex-col items-center justify-center px-4">
-      <ParticlesComponent/>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          
           <Image 
             src="/image/logo.png" 
             alt="EcoLedger" 
             width={200} 
             height={200}
             className="mx-auto"
-            />
+          />
           <h1 className="text-6xl md:text-7xl font-bold mb-4 text-white">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
               EcoLedger
@@ -62,11 +64,11 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="flex flex-col md:flex-row gap-4 mb-8 mt-8"
         >
-          <div className=" backdrop-filter backdrop-blur-lg bg-gradient-to-r from-dark-blue via-black to-black rounded-lg p-6 text-center">
+          <div className="backdrop-filter backdrop-blur-lg bg-gradient-to-r from-dark-blue via-black to-black rounded-lg p-6 text-center">
             <h3 className="text-2xl font-bold text-green-400 mb-2">100+</h3>
             <p className="text-sm text-gray-300">Energy Providers</p>
           </div>
-          <div className="bg-opacity-20 backdrop-filter backdrop-blur-lg bg-dark-blue  rounded-lg p-6 text-center">
+          <div className="bg-opacity-20 backdrop-filter backdrop-blur-lg bg-dark-blue rounded-lg p-6 text-center">
             <h3 className="text-2xl font-bold text-blue-400 mb-2">1M+</h3>
             <p className="text-sm text-gray-300">RECs Traded</p>
           </div>
@@ -165,9 +167,9 @@ const testimonials = [
     title: "Operations Manager, WindWave Energy",
   },
   {
-    quote: "Smart contracts have streamlined our entire REC verification process. It's a game-changer.",
-    name: "Emma Rodriguez",
-    title: "Operations Manager, WindWave Energy",
+    quote: "The security features give us peace of mind when trading our renewable energy certificates.",
+    name: "David Lee",
+    title: "CTO, GreenTech Innovations",
   },
 ]
 
@@ -190,102 +192,103 @@ export default function EcoLedger() {
       </section>
 
       {/* Features Section */}
-      <TracingBeam className="px-4">
-        <section id="features" className="py-20">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">Why Choose EcoLedger?</h2>
-            <HoverEffect items={features} />
-          </div>
-        </section>
-
-
-        {/* REC Trading Insights */}
-        <section id="insights" className="py-20 bg-gradient-to-r from-black via-gray-900 to-black">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">REC Trading Insights</h2>
-            <StickyScroll
-              content={[
-                {
-                  title: "Total RECs Traded",
-                  description: "Over 1,234,567 RECs have been traded on our platform, representing a significant portion of the global renewable energy market.",
-                },
-                {
-                  title: "Active Traders",
-                  description: "Our platform hosts 5,678 active traders from around the world, including energy producers, corporations, and individual investors.",
-                },
-                {
-                  title: "Carbon Offset",
-                  description: "The RECs traded on EcoLedger have contributed to offsetting 987,654 tons of carbon emissions, equivalent to planting millions of trees.",
-                },
-                {
-                  title: "Market Growth",
-                  description: "The REC market on our platform has shown a 200% year-over-year growth, indicating strong adoption of renewable energy solutions.",
-                },
-              ]}
-            />
-          </div>
-        </section>
-
-        {/* Testimonials */}
-        <section className="py-20 bg-gradient-to-r from-dark-blue via-black to-black">
-          <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">What Our Users Say</h2>
-            <InfiniteMovingCards
-              items={testimonials}
-              direction="right"
-              speed="slow"
-            />
-          </div>
-        </section>
-
-        {/* Team Section */}
-        <section id="team" className="py-20">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-12">Meet Our Team</h2>
-            <div className="flex flex-wrap justify-center gap-16">
-              {people.map((person) => (
-                <AnimatedTooltip
-                  key={person.id}
-                  items={[{
-                    id: person.id,
-                    name: person.name,
-                    designation: person.designation,
-                    image: person.image,
-                  }]}
-                />
-              ))}
+      <div className="relative">
+        <TracingBeam className="px-4">
+          <section id="features" className="py-20">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-4xl font-bold text-center mb-12">Why Choose EcoLedger?</h2>
+              <HoverEffect items={features} />
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Call to Action */}
-        <section className="py-20">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <CardContainer className="inter-var">
-              <CardBody className="bg-gray-900 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
-                <CardItem
-                  translateZ="50"
-                  className="text-xl font-bold text-neutral-200"
-                >
-                  Join the Green Revolution
-                </CardItem>
-                <CardItem
-                  as="p"
-                  translateZ="60"
-                  className="text-neutral-300 text-sm max-w-sm mt-2 dark:text-neutral-300"
-                >
-                  Start trading Renewable Energy Certificates on our secure blockchain platform today.
-                </CardItem>
-                <CardItem translateZ="100" className="w-full mt-4 p-4">
-                  <Button className="bg-gradient-to-r from-green-400 to-blue-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full text-lg transition duration-300 transform hover:scale-105 w-full">
-                    Get Started
-                  </Button>
-                </CardItem>
-              </CardBody>
-            </CardContainer>
-          </div>
-        </section>
-      </TracingBeam>
+          {/* REC Trading Insights */}
+          <section id="insights" className="py-20 bg-gradient-to-r from-black via-gray-900 to-black">
+            <div className="max-w-4xl mx-auto px-4">
+              <h2 className="text-3xl font-bold text-center mb-12">REC Trading Insights</h2>
+              <StickyScroll
+                content={[
+                  {
+                    title: "Total RECs Traded",
+                    description: "Over 1,234,567 RECs have been traded on our platform, representing a significant portion of the global renewable energy market.",
+                  },
+                  {
+                    title: "Active Traders",
+                    description: "Our platform hosts 5,678 active traders from around the world, including energy producers, corporations, and individual investors.",
+                  },
+                  {
+                    title: "Carbon Offset",
+                    description: "The RECs traded on EcoLedger have contributed to offsetting 987,654 tons of carbon emissions, equivalent to planting millions of trees.",
+                  },
+                  {
+                    title: "Market Growth",
+                    description: "The REC market on our platform has shown a 200% year-over-year growth, indicating strong adoption of renewable energy solutions.",
+                  },
+                ]}
+              />
+            </div>
+          </section>
+
+          {/* Testimonials */}
+          <section className="py-20 bg-gradient-to-r from-dark-blue via-black to-black">
+            <div className="max-w-6xl mx-auto px-4">
+              <h2 className="text-3xl font-bold text-center mb-12">What Our Users Say</h2>
+              <InfiniteMovingCards
+                items={testimonials}
+                direction="right"
+                speed="slow"
+              />
+            </div>
+          </section>
+
+          {/* Team Section */}
+          <section id="team" className="py-20">
+            <div className="max-w-4xl mx-auto px-4 text-center">
+              <h2 className="text-3xl font-bold mb-12">Meet Our Team</h2>
+              <div className="flex flex-wrap justify-center gap-16">
+                {people.map((person) => (
+                  <AnimatedTooltip
+                    key={person.id}
+                    items={[{
+                      id: person.id,
+                      name: person.name,
+                      designation: person.designation,
+                      image: person.image,
+                    }]}
+                  />
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Call to Action */}
+          <section className="py-20">
+            <div className="max-w-4xl mx-auto px-4 text-center">
+              <CardContainer className="inter-var">
+                <CardBody className="bg-gray-900 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
+                  <CardItem
+                    translateZ="50"
+                    className="text-xl font-bold text-neutral-200"
+                  >
+                    Join the Green Revolution
+                  </CardItem>
+                  <CardItem
+                    as="p"
+                    translateZ="60"
+                    className="text-neutral-300 text-sm max-w-sm mt-2 dark:text-neutral-300"
+                  >
+                    Start trading Renewable Energy Certificates on our secure blockchain platform today.
+                  </CardItem>
+                  <CardItem translateZ="100" className="w-full mt-4 p-4">
+                    <Button className="bg-gradient-to-r from-green-400 to-blue-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full text-lg transition duration-300 transform hover:scale-105 w-full">
+                      Get Started
+                    </Button>
+                  </CardItem>
+                </CardBody>
+              </CardContainer>
+            </div>
+          </section>
+        </TracingBeam>
+      </div>
 
       {/* Footer */}
       <footer className="bg-gradient-to-r from-dark-blue via-black to-black py-12">
