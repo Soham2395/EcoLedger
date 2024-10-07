@@ -264,7 +264,7 @@ export default function EcoLedger() {
           <section className="py-20">
             <div className="max-w-4xl mx-auto px-4 text-center">
               <CardContainer className="inter-var">
-                <CardBody className="bg-gray-900 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
+                <CardBody className="bg-gradient-to-r from-dark-blue via-black to-black relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
                   <CardItem
                     translateZ="50"
                     className="text-xl font-bold text-neutral-200"
