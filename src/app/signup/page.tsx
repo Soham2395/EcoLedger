@@ -2,13 +2,14 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Zap, Mail, Lock, User, ArrowRight } from "lucide-react"
+import { Zap, Mail, Lock, User, ArrowRight, LogIn } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import ParticlesComponent from "@/components/ui/particles"
+import { login, register } from "../../api/index.js";
 
 export default function AuthPage() {
   const [activeTab, setActiveTab] = useState("signin")
@@ -21,30 +22,19 @@ export default function AuthPage() {
     transition: { duration: 0.3 }
   }
 
-  const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSignIn = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.target as HTMLFormElement)
     const email = formData.get('email')
     const password = formData.get('password')
-
-    fetch('http://localhost:5000/api/user/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+    const data=await login(email, password);
+    if(data.success==true){
+      document.location.href='/';
+      console.log("Login Success");
+    }
   }
 
-  const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSignUp = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.target as HTMLFormElement)
   
@@ -53,25 +43,16 @@ export default function AuthPage() {
     const password = formData.get('password')
     const confirmPassword = formData.get('confirm-password')
     const companyName = formData.get('company-name')
-    const usertype = formData.get('user-type')
-    
-    fetch('http://localhost:5000/api/user/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, email, password, usertype, companyName }),
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+    const role = formData.get('user-type')
+
+    const data=await register(username, email, password, role, companyName);
+    if(data.success==true){
+      document.location.href='/signup';
+      console.log("Register Success");
+    }
 
 
-    console.log("Sign Up:", { name, email, password, userType, companyName,usertype }) // Include user type and company name
+    // Include user type and company name
   }
 
   return (
@@ -155,12 +136,12 @@ export default function AuthPage() {
                           className="block w-full border border-gray-300 text-black rounded-md p-2"
                           required
                         >
-                          <option value="General User">General User</option>
-                          <option value="Energy Provider">Energy Provider</option>
-                          <option value="Capital Owner">Capital Owner</option>
+                          <option value="generalUser">General User</option>
+                          <option value="energyProvider">Energy Provider</option>
+                          <option value="capitalProvider">Capital Owner</option>
                         </select>
                       </div>
-                      {userType === "Capital Owner" && (
+                      {userType === "capitalProvider" && (
                         <div className="space-y-2">
                           <Label htmlFor="company-name">Company Name</Label>
                           <div className="relative">

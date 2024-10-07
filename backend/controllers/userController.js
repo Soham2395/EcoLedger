@@ -8,9 +8,10 @@ import {
 export const register = async (req, res) => {
   try {
     const { username, email, password, role, companyName } = req.body;
+    console.log(username, email, password, role, companyName);
 
     if (!username || !email || !password) {
-      return res.status(400).json({ msg: "Please fill all required fields" });
+      return res.status(400).json({ msg: "Please fill all required field" });
     }
 
     // Validate the password here
@@ -48,11 +49,11 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const { username, password } = req.body;
-    if (!username || !password) {
+    const { email, password } = req.body;
+    if (!email || !password) {
       return res.status(400).json({ msg: "Please fill all fields" });
     }
-    const user = await Users.findOne({ username });
+    const user = await Users.findOne({ email });
     if (!user) {
       return res.status(400).json({ msg: "User does not exist" });
     }
