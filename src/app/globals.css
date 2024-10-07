@@ -115,6 +115,9 @@
 }
 
 /* Responsive font sizes */
+html{
+  scroll-behavior: smooth;
+}
 @screen sm {
   html {
     font-size: 14px;
@@ -131,4 +134,32 @@
   html {
     font-size: 18px;
   }
+}
+
+.mybackground{
+  background-color: rgb(17 24 39);
+  border-radius: 40px;
+  border: 1px solid  #68d391ab;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 100s linear infinite;
+  will-change: transform;
+}
+.scroller {
+  overflow: hidden; /* Hide overflow */
+  white-space: nowrap; /* Prevent line breaks */
+}
+
+ul {
+  display: flex; /* Flexbox for horizontal layout */
 }
