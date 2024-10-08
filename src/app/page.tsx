@@ -114,7 +114,7 @@ const HeroSection = () => {
           className="flex gap-4"
         >
           <Button className="bg-gradient-to-r from-green-400 to-blue-500 hover:bg-green-600 text-black font-bold py-3 px-6 rounded-full text-lg transition duration-300 transform hover:scale-105">
-            Get Started
+            <Link href="/dashboard">Get Started</Link>
           </Button>
           <Button
             variant="outline"
@@ -308,6 +308,7 @@ export default function EcoLedger() {
                 direction="right" // Change direction as needed
                 speed="normal" // Set speed: 'fast', 'normal', or 'slow'
                 pauseOnHover={true} // Set to true to pause on hover
+                
               />
             </div>
           </section>
