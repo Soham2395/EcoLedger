@@ -81,7 +81,7 @@ export default function AuthPage() {
           <CardContent className="pt-6">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               <TabsList className="grid w-full grid-cols-2 mb-4">
-                <TabsTrigger value="signin">Sign In</TabsTrigger>
+                <a href="http://localhost:3000"><TabsTrigger value="signin" >Sign In</TabsTrigger></a>
                 <TabsTrigger value="signup">Sign Up</TabsTrigger>
               </TabsList>
               <AnimatePresence mode="wait">
